@@ -1,0 +1,86 @@
+*-------------------------------------------
+*KADİR DEĞER
+*Inheritance uygulaması
+*Method Redefinition örneği
+*Abstrac method kullanımı
+*kadirdegr1997@gmail.com
+
+CLASS vehicle DEFINITION ABSTRACT.
+  PUBLIC SECTION.
+  METHODS: gofaster,
+           writespeed ABSTRACT.
+
+
+PROTECTED SECTION.
+  data speed type i.
+
+  endclass.             "VEHİCLE DEFINITION.
+
+* ---------------------------------------
+* Car Class Definition
+*-----------------------------------------
+  CLASS car DEFINITION INHERITING FROM vehicle.
+    PUBLIC SECTION.
+    METHODS: refuel,
+             writespeed REDEFINITION.
+
+    PROTECTED SECTION.
+    data fuellevel type i .
+    ENDCLASS.
+
+*---------------------------------
+* Boat Class Definition
+*-----------------------------
+
+CLASS boat DEFINITION INHERITING FROM vehicle.
+PUBLIC SECTION.
+ METHODS: writespeed REDEFINITION.
+
+  ENDCLASS. "boatdefinition
+
+*----------------------------
+* vehicle class implementation
+*----------------------------
+
+  class vehicle IMPLEMENTATION.
+    method gofaster.
+      speed = speed + 1.
+      ENDMETHOD.
+
+*      METHOD writespeed.
+*        WRITE: / 'The Vehicle Speed İs: ', speed LEFT-JUSTIFIED.
+
+*       ENDMETHOD.
+
+       ENDCLASS.
+
+*-------------------------
+* Car implementation
+*-------------------------
+
+class car IMPLEMENTATION.
+  method refuel.
+    fuellevel = 60.
+    WRITE: / ' You have just filled up your  fuel tank ' .
+    ENDMETHOD.
+
+    METHOD writespeed.
+    WRITE: / 'The CAR Speed İs: ', speed LEFT-JUSTIFIED.
+
+    ENDMETHOD.
+
+    ENDCLASS. "car implementation.
+
+*-----------------------
+* Boat implementation
+*-----------------------
+
+    class boat IMPLEMENTATION.
+
+    METHOD writespeed.
+    WRITE: / 'The BOAT Speed İs: ', speed LEFT-JUSTIFIED.
+*    call METHOD super->writespeed.   "*
+
+    ENDMETHOD.
+
+    ENDCLASS. "car implementation.
